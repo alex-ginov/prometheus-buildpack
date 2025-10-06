@@ -26,9 +26,15 @@ if [[ -z "$PROMSCALE_AUTH_USERNAME" ]] || [[ -z "$PROMSCALE_AUTH_PASSWORD" ]]; t
   exit -1
 fi
 
+r_influx=""
+if [[ -n "$INFLUXDB_URL" || -n "$INFLUX_URL" ]]; then
+  r_influx="Using InfluxDB as Prometheus remote_write backend"
+fi
+echo "$r_influx"
+
 echo "Generating the Prometheus configuration file"
 ruby /app/gen_prometheus_conf.rb > /app/prometheus.yml
 
-/app/prometheus/prometheus --web.listen-address=127.0.0.1:9090 \
+/app/prometheus/prometheus --web.listen-address=0.0.0.0:${PORT} \
   --web.external-url=https://${CANONICAL_HOST} \
   --web.route-prefix="/"
