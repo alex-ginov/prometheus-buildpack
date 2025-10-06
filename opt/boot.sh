@@ -55,13 +55,8 @@ else
   exit 1
 fi
 
-<<<<<<< HEAD
 echo "Using Promscale as Prometheus storage backend"
 
-if [[ -z "$PROMSCALE_AUTH_USERNAME" ]] || [[ -z "$PROMSCALE_AUTH_PASSWORD" ]]; then
-  echo >&2 "The environment variables PROMSCALE_AUTH_USERNAME and PROMSCALE_AUTH_PASSWORD are mandatory to connect to Promscale"
-  exit -1
-fi
 
 r_influx=""
 if [[ -n "$INFLUXDB_URL" || -n "$INFLUX_URL" ]]; then
@@ -73,16 +68,6 @@ echo "Generating the Prometheus configuration file"
 ruby /app/gen_prometheus_conf.rb > /app/prometheus.yml
 
 /app/prometheus/prometheus --web.listen-address=0.0.0.0:${PORT} \
-=======
-# Démarrage de Prometheus
-echo "[INFO] Démarrage de Prometheus..."
-exec /app/prometheus/prometheus \
-  --config.file=/app/prometheus.yml \
-  --storage.tsdb.path=/prometheus \
-  --web.console.libraries=/app/prometheus/console_libraries \
-  --web.console.templates=/app/prometheus/consoles \
-  --web.listen-address=:${PORT:-9090} \
->>>>>>> 62787bac3e7326650d0cc6fe7144a5c49aa6994b
   --web.external-url=https://${CANONICAL_HOST} \
   --web.route-prefix="/" \
   --web.enable-lifecycle \
