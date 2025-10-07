@@ -1,0 +1,6 @@
+# Fichier de configuration principal Prometheus
+# Ce fichier est un point d'entrée pour le buildpack
+# La configuration complète se trouve dans opt/prometheus.yml.erb
+
+# Cette configuration sera utilisée pour générer la configuration finale
+# lors du déploiement.
