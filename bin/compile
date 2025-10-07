@@ -55,7 +55,7 @@ install_prometheus() {
   echo " done"
 
   echo -n "Copying the vendored scripts from the buildpack..."
-  cp ${BUILDPACK_DIR}/opt/* ${BUILD_DIR}
+  cp -a  ${BUILDPACK_DIR}/opt/* ${BUILD_DIR}
   echo " done"
 }
 
