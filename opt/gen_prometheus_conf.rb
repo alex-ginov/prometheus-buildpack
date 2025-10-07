@@ -1,3 +1,4 @@
+
 #!/usr/bin/env ruby
 
 require "erb"
@@ -7,6 +8,7 @@ require "yaml"
 =======
 require "fileutils"
 
+<<<<<<< HEAD
 # Configuration des chemins
 RULES_DIR = "/app/opt/rules"
 CONFIG_DIR = "/etc/prometheus"
@@ -16,11 +18,14 @@ FileUtils.mkdir_p(RULES_DIR) unless Dir.exist?(RULES_DIR)
 FileUtils.mkdir_p(CONFIG_DIR) unless Dir.exist?(CONFIG_DIR)
 >>>>>>> scalingo/master
 
+=======
+>>>>>>> origin/master
 def scrape_configs
   prometheus_scrape_configs = ENV["PROMETHEUS_SCRAPE_CONFIGS"] || []
   return JSON.parse(prometheus_scrape_configs)
 end
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 content = File.read "/app/prometheus.yml.erb"
 erb_postgresql_conf = ERB.new(content)
@@ -76,3 +81,8 @@ content = File.read "/app/opt/prometheus.yml.erb"
 # Rendu du template avec les variables nécessaires
 puts ERB.new(content).result(binding)
 >>>>>>> scalingo/master
+=======
+content = File.read "/app/prometheus.yml.erb"
+erb_conf = ERB.new(content)
+erb_conf.run
+>>>>>>> origin/master
