@@ -26,12 +26,12 @@ web:
   enable_admin_api: true
   page_title: "Prometheus - Tableau de bord de surveillance"
   # Chemin vers le fichier contenant les identifiants (sera généré dynamiquement)
-  basic_auth_users: "/etc/prometheus/web_auth.yml"
+  basic_auth_users: "/app/prometheus/web_auth.yml"
 
 # Chargement des fichiers de règles
 rule_files:
   <% rules_files.each do |rule_file| %>
-  - /etc/prometheus/<%= rule_file %>
+  - /app/prometheus/<%= rule_file %>
   <% end %>
 
 # Configuration pour l'envoi des données vers InfluxDB
